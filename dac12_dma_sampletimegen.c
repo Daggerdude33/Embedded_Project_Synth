@@ -30,9 +30,16 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "ti/driverlib/dl_dma.h"
 #include "ti_msp_dl_config.h"
+#include <sys/cdefs.h>
+
+#define SQUARE_INT 1024
+volatile uint8_t gEchoData = 0;
+
 
 /* Repetitive sine wave */
+
 const uint16_t gOutputSignalSine64[] = {2048, 2248, 2447, 2642, 2831, 3013,
     3185, 3347, 3496, 3631, 3750, 3854, 3940, 4007, 4056, 4086, 4095, 4086,
     4056, 4007, 3940, 3854, 3750, 3631, 3496, 3347, 3185, 3013, 2831, 2642,
@@ -40,21 +47,39 @@ const uint16_t gOutputSignalSine64[] = {2048, 2248, 2447, 2642, 2831, 3013,
     241, 155, 88, 39, 9, 0, 9, 39, 88, 155, 241, 345, 464, 599, 748, 910, 1082,
     1264, 1453, 1648, 1847};
 
+uint16_t gOutputSignalSquare64[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                                SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,
+                                SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT};
+uint16_t gOutputSignalOff64[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+
 int main(void)
 {
     SYSCFG_DL_init();
 
     /* Configure DMA source, destination and size */
     DL_DMA_setSrcAddr(
-        DMA, DMA_CH0_CHAN_ID, (uint32_t) &gOutputSignalSine64[0]);
+        DMA, DMA_CH0_CHAN_ID, (uint32_t) &gOutputSignalSquare64[0]);
     DL_DMA_setDestAddr(DMA, DMA_CH0_CHAN_ID, (uint32_t) & (DAC0->DATA0));
     DL_DMA_setTransferSize(
-        DMA, DMA_CH0_CHAN_ID, sizeof(gOutputSignalSine64) / sizeof(uint16_t));
+        DMA, DMA_CH0_CHAN_ID, sizeof(gOutputSignalSquare64) / sizeof(uint16_t));
 
     DL_DMA_enableChannel(DMA, DMA_CH0_CHAN_ID);
 
-    DL_SYSCTL_enableSleepOnExit();
     while (1) {
         __WFI();
     }
 }
+/*
+void UART_0_INST_IRQHandler(void)
+{
+    switch (DL_UART_Main_getPendingInterrupt(UART_0_INST)) {  
+        case DL_UART_MAIN_IIDX_RX:
+            //DL_GPIO_togglePins(GPIO_LEDS_PORT,GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
+            gEchoData = DL_UART_Main_receiveData(UART_0_INST);
+            DL_UART_Main_transmitData(UART_0_INST, gEchoData);
+            break;
+        default:
+            break;
+    }
+}
+*/
