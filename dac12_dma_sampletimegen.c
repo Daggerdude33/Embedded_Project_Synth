@@ -34,9 +34,15 @@
 #include "ti_msp_dl_config.h"
 #include <sys/cdefs.h>
 
+<<<<<<< HEAD
 #define SQUARE_INT 1024
 volatile uint8_t gEchoData = 0;
 uint64_t N = 0; //Sample Size
+=======
+#define SI 4095
+volatile uint8_t gEchoData = 0;
+
+>>>>>>> 192982c (commiting)
 
 /* Repetitive sine wave */
 
@@ -47,6 +53,7 @@ const uint16_t gOutputSignalSine64[] = {2048, 2248, 2447, 2642, 2831, 3013,
     241, 155, 88, 39, 9, 0, 9, 39, 88, 155, 241, 345, 464, 599, 748, 910, 1082,
     1264, 1453, 1648, 1847};
 
+<<<<<<< HEAD
 uint16_t gOutputSignalSquare64[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
                                 SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,
                                 SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT};
@@ -58,6 +65,12 @@ uint64_t SampleSize(uint64_t f_o, uint64_t f_s){
 }
 
 
+=======
+uint16_t gOutputSignalSquare64[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                                    SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI,SI};
+uint16_t gOutputSignalOff64[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+
+>>>>>>> 192982c (commiting)
 int main(void)
 {
     SYSCFG_DL_init();
@@ -75,6 +88,7 @@ int main(void)
         __WFI();
     }
 }
+<<<<<<< HEAD
 /*
 void UART_0_INST_IRQHandler(void)
 {
@@ -89,3 +103,7 @@ void UART_0_INST_IRQHandler(void)
     }
 }
 */
+=======
+
+
+>>>>>>> 192982c (commiting)
