@@ -36,7 +36,7 @@
 
 #define SQUARE_INT 1024
 volatile uint8_t gEchoData = 0;
-
+uint64_t N = 0; //Sample Size
 
 /* Repetitive sine wave */
 
@@ -51,6 +51,12 @@ uint16_t gOutputSignalSquare64[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
                                 SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,
                                 SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT,SQUARE_INT};
 uint16_t gOutputSignalOff64[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+
+uint64_t SampleSize(uint64_t f_o, uint64_t f_s){
+    N = f_s/f_o;
+    return N
+}
+
 
 int main(void)
 {
