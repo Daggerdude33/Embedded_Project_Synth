@@ -69,7 +69,7 @@ int main(void)
         __WFI();
     }
 }
-/*
+
 void UART_0_INST_IRQHandler(void)
 {
     switch (DL_UART_Main_getPendingInterrupt(UART_0_INST)) {  
@@ -82,4 +82,3 @@ void UART_0_INST_IRQHandler(void)
             break;
     }
 }
-*/
